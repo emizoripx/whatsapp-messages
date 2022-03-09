@@ -1,0 +1,27 @@
+{
+    "name": "emizoripx/whatsapp-messages",
+    "description": "Library to send Whatsapp messages with Sinch Service",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Alvaro Molina",
+            "email": "remberto.molina@ipxserver.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+
+    "autoload": {
+        "psr-4": {
+            "EmizorIpx\\WhatsappMessages\\":"src"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "EmizorIpx\\WhatsappMessages\\WhatsappMessagesServiceProvider"
+            ]
+        }
+    }
+}
