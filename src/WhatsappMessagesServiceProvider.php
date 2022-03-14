@@ -2,6 +2,8 @@
 
 namespace EmizorIpx\WhatsappMessages;
 
+use EmizorIpx\WhatsappMessages\Services\Whatsapp\WhatsappService;
+use EmizorIpx\WhatsappMessages\Utils\WhatsappSendHelper;
 use Illuminate\Support\ServiceProvider;
 
 class WhatsappMessagesServiceProvider extends ServiceProvider
@@ -15,6 +17,14 @@ class WhatsappMessagesServiceProvider extends ServiceProvider
     {
         //
         $this->loadRoutesFrom(__DIR__."/Routes/api.php");
+
+        // FACADES
+
+        $app = $this->app;
+
+        $app->bind('send_message', function(){
+            return new WhatsappSendHelper( new WhatsappService ());
+        });
 
     }
 
@@ -39,13 +49,13 @@ class WhatsappMessagesServiceProvider extends ServiceProvider
         // $this->publishes([__DIR__.'/Resources/assets' => public_path('vendor/posinvoicingfel'),__DIR__.'/Resources/Views/orders' => resource_path('views/orders/')], 'public');
 
         # CONFIG FILE
-        // $this->publishes([
-        //     __DIR__."/Config/posinvoicingfel.php" => config_path('posinvoicingfel.php')
-        // ]);
+        $this->publishes([
+            __DIR__."/Config/whatsappmessages.php" => config_path('whatsappmessages.php')
+        ]);
 
-        // $this->mergeConfigFrom(__DIR__.'/Config/posinvoicingfel.php', 'posinvoicingfel');
+        $this->mergeConfigFrom(__DIR__.'/Config/whatsappmessages.php', 'whatsappmessages');
 
-        // LOAD COMMANDS
+        
 
     }
 }
