@@ -14,7 +14,7 @@ class CreateWhatsappMessagesTable extends Migration
     public function up()
     {
         Schema::create('whatsapp_messages', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
             $table->string('message_key');
             $table->string('message_id')->nullable();
             $table->text('message')->nullable();
