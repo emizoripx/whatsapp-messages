@@ -135,12 +135,14 @@ class WhatsappService {
             "message" => [
                 "type" => "template",
                 "template_name" => $this->template_name,
-                "language" => "es",
-                "body_params" => $this->body_params
+                "language" => "es"
             ],
             "callback" => env('APP_URL') . '/whatsapp/callback'
         ];
 
+        if(!empty($this->body_params)){
+            $array_data['message']['body_params'] = $this->body_params;
+        }
         if(!empty($this->media_params)){
             $array_data['message']['media'] = $this->media_params;
         }
@@ -161,9 +163,9 @@ class WhatsappService {
         if(empty($this->number)){
             throw new WhatsappException( "Número de Teléfono es requerido");
         }
-        if(empty($this->body_params)){
-            throw new WhatsappException( "Datos requeridos para el envío");
-        }
+        // if(empty($this->body_params)){
+        //     throw new WhatsappException( "Datos requeridos para el envío");
+        // }
     }
 
     public function authorizationOfSending(){
